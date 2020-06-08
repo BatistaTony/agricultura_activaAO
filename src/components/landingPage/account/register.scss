@@ -1,0 +1,268 @@
+@import "./../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.register {
+  background: linear-gradient(to right, white, #edf2f6);
+  @include flexbox(column);
+}
+
+.containerRegister {
+  width: 95%;
+  height: auto;
+  @include flexbox(row, space-between, flex-start);
+  padding-top: 5em;
+  padding-bottom: 4em;
+  box-sizing: border-box;
+
+  @media (max-width: 1040px) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 770px) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.reg_ap {
+  width: 40%;
+  @include flexbox(column, flex-start, flex-start);
+
+  @media (max-width: 770px) {
+    display: none;
+  }
+
+  .titl_rg_ap {
+    font-size: 30pt;
+    width: 500px;
+
+    @media (max-width: 1110px) {
+      font-size: 25pt;
+    }
+
+    @media (max-width: 930px) {
+      font-size: 20pt;
+      width: 300px;
+    }
+  }
+
+  .img_ap_rg {
+    width: 30rem;
+    margin-left: 5em;
+
+    @media (max-width: 1110px) {
+      width: 25em;
+    }
+
+    @media (max-width: 1040px) {
+      margin-left: 0;
+    }
+
+    @media (max-width: 930px) {
+      width: 18em;
+    }
+  }
+}
+
+.form_regis {
+  width: 40%;
+
+  @media (max-width: 1040px) {
+    margin-left: 10%;
+    width: 50%;
+  }
+
+  @media (max-width: 930px) {
+    width: 60%;
+    margin-left: 5%;
+  }
+
+  @media (max-width: 770px) {
+    margin-left: 0;
+    width: 90%;
+  }
+}
+
+.subDiv_frm {
+  width: 80%;
+
+  @media (max-width: 770px) {
+    width: 90%;
+  }
+
+  @media (max-width: 770px) {
+    width: 100%;
+  }
+}
+
+.logo_re {
+  width: 20em;
+  margin-left: -5px;
+  margin-bottom: -12px;
+}
+
+.titl_rg_form {
+  font-size: 27pt;
+  font-family: $goldSB;
+  margin-bottom: 5px;
+
+  @media (max-width: 500px) {
+    font-size: 25pt;
+  }
+}
+
+.txt_form {
+  font-size: 11pt;
+  color: black;
+  font-family: $goldMed;
+}
+
+.form_ {
+  width: 400px;
+  height: auto;
+
+  overflow: hidden;
+  margin-top: 2em;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px gray;
+  @media (max-width: 478px) {
+    width: 100%;
+  }
+}
+
+.form_group {
+  background-color: #edf2f5;
+  height: 70px;
+  position: relative;
+  width: 100%;
+  @include flexbox(row, flex-start);
+  border-bottom: 1px solid rgb(224, 224, 224);
+
+  &:hover {
+    background-color: white;
+  }
+
+  .img_frm_gr {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    z-index: 2;
+    margin-left: 1em;
+  }
+
+  .gr_ipt {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    @include flexbox(column, flex-start, flex-start);
+  }
+
+  .img_ipt_status {
+    position: absolute;
+    z-index: 2;
+    right: 3%;
+    transition: 0.5s;
+    opacity: 0;
+  }
+
+  .img_sh {
+    opacity: 1;
+  }
+
+  .input_fm {
+    height: 100%;
+    width: 100%;
+    @include getOutBorder();
+    background-color: #edf2f5;
+    position: absolute;
+    font-size: 9pt;
+    padding-top: 2px;
+    font-family: $goldMed;
+    padding-left: 4em;
+    box-sizing: border-box;
+    transition: 0.5s;
+
+    &:focus {
+      background-color: white;
+    }
+  }
+
+  .labelN {
+    margin-top: 15px;
+    font-size: 9pt;
+    color: #bcc3cf;
+    font-family: $goldMed;
+  }
+
+  .input_fm:focus ~ label {
+    @extend .labelN;
+    color: #2a7cf8;
+  }
+
+  label {
+    position: absolute;
+    font-size: 10pt;
+    font-family: $goldMed;
+    margin-top: 27px;
+    color: #bcc3cf;
+    transition: all ease 0.2s;
+    padding-left: 3.99em;
+  }
+}
+
+.frm_btn {
+  .btn_rg {
+    width: 110px;
+    height: 42px;
+    @include getOutBorder();
+    border-radius: 3px;
+    font-size: 10pt;
+    font-family: $goldMed;
+    box-shadow: 0 0 2px gray;
+    transition: 0.5s;
+    margin-right: 20px;
+    color: white;
+    transition: .5s;
+    background: linear-gradient(to left, #3e89fa, #3179e3);
+    margin-bottom: 20px;
+  }
+
+  @include rippleEffect();
+  .btnL {
+    width: auto;
+    height: auto;
+    font-family: $goldMed;
+    @include getOutBorder();
+    background: transparent;
+  }
+}
+
+.register_ {
+  display: none;
+}
+
+.shos_spinner {
+  opacity: 1 !important;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.img_spinner {
+  opacity: 0;
+  transition: 0.5s;
+  animation-name: spinner;
+  animation-duration: 0.9s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

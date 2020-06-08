@@ -1,0 +1,29 @@
+@mixin flexbox($dir: row, $j: center, $a: center) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $j;
+  align-items: $a;
+}
+
+@mixin getOutBorder {
+  outline: none;
+  border: none;
+}
+
+@mixin rippleEffect {
+  // .btn_rg {
+  //   background-position: center;
+  //   transition: background 0.8s;
+  // }
+
+  .btn_rg:hover {
+    background: #3e89fa radial-gradient(circle, transparent 1%, #3e89fa 1%)
+      center/15000%;
+  }
+
+  .btn_rg:active {
+    background-color: #70b7f1;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}

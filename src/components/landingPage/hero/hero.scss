@@ -1,0 +1,127 @@
+@import "./../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.hero {
+  width: 100%;
+  height: 90vh;
+
+  @media (max-width: 750px) {
+    height: 91vh;
+  }
+
+  @media (max-height:925px){
+    height: 700px;
+  }
+}
+
+.item {
+  @extend .hero;
+  background: linear-gradient(rgba(26, 25, 25, 0.795), rgba(20, 19, 19, 0.021)),
+    url(/images/hero.jpg);
+  background-position: center top;
+  background-size: cover;
+  @include flexbox(column, center, flex-start);
+  padding-left: 12%;
+  box-sizing: border-box;
+
+  @media (max-width: 990px) {
+    padding-left: 7%;
+  }
+
+  @media (max-width: 720px) {
+    padding-left: 0;
+    align-items: center;
+  }
+
+  .contentItem {
+    width: 70%;
+    height: auto;
+    margin-top: -10%;
+
+    @media (max-width: 650px) {
+      width: 80%;
+    }
+  }
+
+  .item_title {
+    font-size: 30pt;
+    font-family: $goldSB;
+    width: 700px;
+    color: white;
+    letter-spacing: 2px;
+
+    @media (max-width: 920px) {
+      width: 500px;
+      font-size: 20pt;
+    }
+
+    @media (max-width: 720px) {
+      width: 100%;
+      text-align: center;
+      font-size: 130%;
+    }
+  }
+
+  a {
+    text-align: none;
+  }
+
+  .item_texto {
+    margin-top: 20px;
+    font-size: 12pt;
+    font-family: $goldMed;
+    width: 800px;
+    color: rgb(216, 216, 216);
+
+    @media (max-width: 920px) {
+      width: 600px;
+    }
+
+    @media (max-width: 720px) {
+      width: 100%;
+      text-align: center;
+            font-size: 100%;
+
+    }
+  }
+}
+
+.itemBtns {
+  margin-top: 40px;
+  height: 50px;
+  @include flexbox(row, flex-start);
+
+  @media (max-width: 720px) {
+    justify-content: center;
+  }
+
+ 
+  .btnItem {
+    font-size: 11pt;
+    font-family: $goldMed;
+    width: 120px;
+    height: 40px;
+    @include getOutBorder();
+    margin-right: 20px;
+    transition: 0.2s;
+  }
+
+   a {
+    text-align: none;
+    color: black;
+  }
+
+  .btnItem:hover {
+    opacity: 0.9;
+    margin-top: -10px;
+  }
+
+  .btnItem:first-child {
+    background-color: #42ac16;
+  }
+
+  .btnItem:last-child {
+    background-color: #f4f5f3;
+    margin-right: 0;
+  }
+}

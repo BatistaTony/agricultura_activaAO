@@ -1,0 +1,175 @@
+@import "./../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  @include flexbox(row, space-between, center);
+  padding-left: 1%;
+  padding-right: 2%;
+  box-sizing: border-box;
+  background-color: white;
+
+  @media (max-width: 750px) {
+    height: 60px;
+    padding-left: 1%;
+  }
+  z-index: 3;
+}
+
+.navbarFixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.navbarS {
+  box-shadow: 0 0 5px rgb(211, 211, 211);
+}
+
+.logo {
+  img {
+    width: 19rem;
+
+    @media (max-width: 750px) {
+      width: 15rem;
+    }
+  }
+}
+
+.menu {
+  width: auto;
+  height: 100%;
+
+  @media (max-width: 750px) {
+    display: none;
+  }
+
+  .list_item {
+    height: 100%;
+    list-style: none;
+    @include flexbox();
+
+    li {
+      font-size: 11pt;
+      width: auto;
+      margin-right: 20px;
+      font-family: $goldMed;
+      cursor: default;
+      transition: 0.5s;
+
+      a {
+                color: black;
+
+      }
+    }
+
+    .active_item,
+    li:hover {
+      a {
+        font-family: $goldSB;
+        transition: 0.5s;
+        color: black;
+      }
+    }
+  }
+}
+
+.btnMenu {
+  width: 30px;
+  height: 30px;
+  display: none;
+  z-index: 2;
+
+  @media (max-width: 750px) {
+    display: block;
+    @include flexbox(column);
+  }
+
+  .line {
+    width: 25px;
+    background-color: black;
+    height: 3.5px;
+    border-radius: 50px;
+    margin-top: 3px;
+    transition: 0.5s;
+  }
+
+  .line1 {
+    margin-top: 0;
+  }
+}
+
+.openedMenu {
+  .line2 {
+    opacity: 0;
+  }
+
+  .line1 {
+    transform: rotate(45deg) translate(4px, 5px);
+  }
+
+  .line3 {
+    transform: rotate(-45deg) translate(4px, -5px);
+  }
+}
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 100%;
+  top: 0;
+  margin-top: 60px;
+  background-color: rgba(44, 48, 44, 0.466);
+  z-index: 1;
+  transition: 0.5s;
+  display: block;
+}
+
+.overlayClose {
+  display: block;
+}
+
+.overlayShow {
+  transition: 0.5s;
+  left: 0;
+}
+
+@keyframes sliderLeft {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.menuMobile {
+  @extend .menu;
+
+  @media (max-width: 750px) {
+    display: block;
+  }
+
+  ul {
+    flex-direction: column !important;
+
+    li {
+      margin-top: 10px;
+
+      a {
+        font-size: 12pt !important;
+        color: white !important;
+      }
+    }
+  }
+
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background-color: rgb(167, 76, 48);
+  z-index: 1;
+}

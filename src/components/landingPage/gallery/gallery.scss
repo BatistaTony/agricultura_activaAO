@@ -1,0 +1,134 @@
+@import "./../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.gallery {
+  width: 100%;
+  height: 1200px;
+  @include flexbox();
+  margin-top: 2%;
+
+  @media (max-height: 925px) {
+    height: 700px;
+  }
+}
+
+$space_p: 25px;
+
+.divM {
+  width: 87%;
+  height: 87%;
+  @include flexbox();
+}
+
+.itemGallery {
+  border-radius: 7px;
+  background-position: center top !important;
+  position: relative;
+  overflow: hidden;
+
+  .inforItem {
+    width: 100%;
+    height: 100%;
+    top: -100%;
+    left: 0;
+    transition: 0.5s;
+    position: absolute;
+    background-color: rgba(32, 31, 31, 0.664);
+  }
+
+  &:hover .inforItem {
+    top: 0 !important;
+  }
+
+  .texD {
+    width: 100%;
+    height: 100%;
+    @include flexbox(column);
+
+    .local {
+      color: white;
+      text-align: center;
+    }
+
+    .desc {
+      width: 80%;
+      color: white;
+      text-align: center;
+      font-size: 10pt;
+    }
+  }
+}
+
+.divOne {
+  width: 45%;
+  height: 95%;
+
+  .itemGallery {
+    width: 100%;
+    margin-right: $space_p;
+    height: 68%;
+    margin-top: $space_p;
+  }
+}
+.divOne_1 {
+  width: 100%;
+  height: 28%;
+  @include flexbox();
+  justify-content: space-between;
+
+  .itemGallery {
+    width: 50%;
+    margin-right: $space_p;
+    height: 100%;
+    margin-top: 0;
+
+    @media (max-width: 750px) {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  .itemGallery:last-child {
+    margin-right: 0;
+
+    @media (max-width: 750px) {
+      display: none;
+    }
+  }
+}
+.divTwo {
+  width: 50%;
+  height: 95%;
+  margin-left: $space_p;
+
+  .itemGallery:first-child {
+    width: 100%;
+    height: 45%;
+  }
+
+  .divTow_1 {
+    @extend .divOne_1;
+    height: 51%;
+    margin-top: $space_p;
+
+    .itemGallery {
+      width: 100%;
+      height: 100%;
+    }
+
+    .itemGallery:first-child {
+      width: 55%;
+
+      @media (max-width: 750px) {
+        display: none;
+      }
+    }
+
+    .itemGallery:last-child {
+      @media (max-width: 750px) {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}

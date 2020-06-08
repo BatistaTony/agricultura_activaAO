@@ -1,0 +1,12 @@
+@import "./../../styles/fonts.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: $goldReg;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}

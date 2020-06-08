@@ -1,0 +1,133 @@
+@import "./../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.footer {
+  width: 100%;
+  height: auto;
+}
+
+.src_demo {
+  width: 100%;
+  height: 600px;
+  background: linear-gradient(rgba(17, 17, 17, 0.829), rgba(26, 25, 25, 0.753)),
+    url(/images/bg.jpg);
+  background-position: center;
+  background-size: cover;
+  @include flexbox(column);
+
+  .title_sr_dm {
+    font-size: 30pt;
+    width: 600px;
+    text-align: center;
+    color: white;
+    font-family: $goldSB;
+    letter-spacing: 1.2px;
+
+    @media (max-width: 750px) {
+      font-size: 140%;
+      width: 80%;
+    }
+  }
+
+  .text_sr_dm {
+    width: 70%;
+    font-size: 15pt;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+
+    @media (max-width: 750px) {
+      font-size: 12pt;
+    }
+  }
+
+  .btnItem_dm {
+    background-color: #42ac16 !important;
+  }
+}
+
+.di_footer_ {
+  width: 100%;
+  height: auto;
+  background-color: #131620;
+  @include flexbox(column, space-between, flex-start);
+
+  @media (max-width: 540px) {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.list_rd_sc {
+  list-style: none;
+  @include flexbox();
+  margin: 20px;
+  float: left;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  li {
+    width: 32px;
+    height: 32px;
+    background-color: #97989d;
+    border-radius: 100%;
+    margin-right: 10px;
+    transition: 0.5s;
+
+    &:hover {
+      background-color: white;
+    }
+
+    a {
+      width: 100%;
+      height: 100%;
+      @include flexbox();
+    }
+
+    img {
+      width: 17px;
+      height: 17px;
+    }
+  }
+}
+
+.addr_ {
+  color: white;
+  font-size: 11pt;
+  margin-left: 20px;
+  @media (max-width: 540px) {
+    margin-left: 0;
+  }
+}
+
+.div_bottom {
+  @include flexbox();
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 95%;
+  margin-left: 20px;
+  margin-bottom: 20px;
+
+  @media (max-width: 540px) {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  img {
+    width: 70px;
+    height: 70px;
+    @media (max-width: 540px) {
+      margin-top: 20px;
+    }
+  }
+
+  .cpy {
+    color: white;
+    font-size: 12pt;
+    font-family: $goldReg;
+    @media (max-width: 540px) {
+      margin-top: 20px;
+    }
+  }
+}

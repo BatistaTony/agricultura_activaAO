@@ -1,0 +1,165 @@
+@import "./../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.overlay_confirm {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 4;
+  left: 0;
+  background-color: rgba(7, 7, 7, 0.623);
+}
+
+.overlay_conf {
+    display: none;
+}
+
+.div_conf {
+  width: 100%;
+  height: 100vh;
+  @include flexbox(column);
+}
+
+.div_frm_cnf {
+  width: 400px;
+  height: auto;
+  padding: 2em;
+  margin-top: -30px;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 20px;
+  @include flexbox(column);
+  position: relative;
+
+  @media (max-width: 550px) {
+    width: 70% !important;
+  }
+}
+
+.titl_cnf {
+  color: black;
+  font-size: 15pt;
+  text-align: center;
+  font-family: $goldSB;
+  width: 250px;
+  margin-bottom: 10px;
+
+  @media (max-width: 550px) {
+    font-size: 14pt;
+    width: 80%;
+  }
+}
+
+.text_cnf {
+  width: 90%;
+  text-align: center;
+  font-family: $goldReg;
+
+  mark {
+    background-color: transparent;
+    color: #3e89fa;
+    font-family: $goldSB;
+    cursor: default;
+  }
+}
+
+.err_S {
+  color: red;
+  font-size: 10pt;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.form_group_conf {
+  width: 300px;
+  height: 50px;
+  overflow: hidden;
+  box-shadow: 0 0 5px gray;
+  border-radius: 5px !important;
+  border-bottom: none;
+  margin-top: 20px;
+
+  @media (max-width: 550px) {
+    width: 90%;
+  }
+
+  input {
+    padding-left: 3.5em !important;
+    font-size: 10pt !important;
+
+    &::placeholder {
+      color: #bcc3cf;
+    }
+  }
+
+  .img_frm_gr {
+    width: 22px;
+    height: 22px;
+  }
+
+  input:focus {
+    background-color: #edf2f5 !important;
+  }
+}
+
+.btnClose {
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  @include getOutBorder();
+  margin: 10px;
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.img_spinner_conf {
+  opacity: 0;
+  width: 35px;
+  height: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btnConfirm {
+  width: 270px !important;
+  height: 40px !important;
+  margin-right: 0 !important;
+
+  @media (max-width: 550px) {
+    width: 200px !important;
+  }
+}
+
+.sucessDiv {
+    display: none;
+}
+
+.div_btn_cnf {
+  @include flexbox();   
+  @media (max-width: 550px) {
+    width: 100% !important;
+  }
+  @media (max-width: 550px) {
+    width: 70% !important;
+  }
+}
+
+.titl_scDv {
+  font-size: 18pt;
+  font-family: $goldMed;
+}
+
+.div_sc_dv {
+  width: 300px;
+}
+
+.img_dn_sc {
+  margin-top: 20px;
+}

@@ -1,0 +1,118 @@
+@import "./../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.about {
+  width: 100%;
+  height: auto;
+  @include flexbox();
+}
+
+.about_container {
+  width: 85%;
+}
+
+.about_title {
+  font-size: 30pt;
+  font-family: $goldSB;
+  width: 600px;
+
+  @media (max-width: 820px) {
+    font-size: 20pt;
+    width: 90%;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.about_text {
+  width: 80%;
+  font-size: 14pt;
+  margin-top: 20px;
+  font-family: $goldMed;
+
+  @media (max-width: 820px) {
+    width: 90%;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    font-size: 12.5pt;
+    text-align: center;
+  }
+}
+
+.services {
+  margin-top: 40px;
+  width: 100%;
+  height: auto;
+  @include flexbox();
+  justify-content: space-between;
+  margin-bottom: 10%;
+
+  @media (max-width: 860px) {
+    flex-direction: column;
+  }
+}
+
+.service_item {
+  width: 30%;
+  height: auto;
+  padding: 1%;
+  padding-bottom: 2%;
+  background-color: #ebeae1;
+  @include flexbox(column);
+  transition: 0.5s;
+  cursor: default;
+
+  @media (max-width: 860px) {
+    width: 100%;
+    margin-top: 20px;
+    align-items: flex-start;
+    padding-left: 5%;
+    box-sizing: border-box;
+  }
+
+    @media (max-width: 500px) {
+      align-items: center;
+      padding-left: 0;
+    }
+
+  .img_item_sr {
+    width: 90px;
+    height: 90px;
+
+    @media (max-width: 870px) {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  .title_item_sr {
+    font-size: 15pt;
+    margin-top: 5px;
+    font-family: $goldMed;
+  }
+
+  .text_item_sr {
+    font-size: 11pt;
+    width: 90%;
+    margin-top: 10px;
+    text-align: center;
+    font-family: $goldMed;
+
+      @media (max-width: 860px) {
+      text-align: left;
+      }
+
+      @media (max-width: 500px) {
+      text-align: center;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
