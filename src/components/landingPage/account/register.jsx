@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import "./register.scss";
 import $ from "jquery";
-import ConfirmarTelefone from "./confirmN";
-import RegisteredWithSucess from "./sucess";
+import ConfirmPhoneNumber from "./confirmN";
 import firebase from "./firebase";
+import { connect } from "react-redux";
+import { getFarm } from "./../../store/actions/farm";
 
 const initalState = {
-  nome: "",
+  name: "",
   password: "",
   password1: "",
-  telefone: "",
-  endereco: "",
-  erro: "",
+  phone_number: "",
+  address_farm: "",
+  error_: "",
   codeConfirm: 0,
 };
 
-export default class Register extends Component {
+class Register extends Component {
   state = initalState;
 
   handleSubmit = (e) => {
@@ -26,7 +27,7 @@ export default class Register extends Component {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
     $(".img_ipt_status").removeClass("img_sh");
-    this.setState({ erro: "" });
+    this.setState({ error_: "" });
   };
 
   showErrorAnimation = (element) => {
@@ -34,38 +35,48 @@ export default class Register extends Component {
   };
 
   register = () => {
-    if (this.state.nome === "") {
-      this.showErrorAnimation("nome");
-      this.setState({ erro: "O Nome está vazio" });
-    } else if (this.state.endereco === "") {
-      this.showErrorAnimation("endereco");
-      this.setState({ erro: "O Endereço está vazio" });
+    if (this.state.name === "") {
+      this.showErrorAnimation("name");
+      this.setState({ error_: "O Nome está vazio" });
+    } else if (this.state.address_farm === "") {
+      this.showErrorAnimation("address_farm");
+      this.setState({ error_: "O Endereço está vazio" });
     } else if (this.state.password === "") {
       this.showErrorAnimation("palavra_passe");
-      this.setState({ erro: "A palavra passe está vazia" });
+      this.setState({ error_: "A palavra passe está vazia" });
     } else if (this.state.password1 === "") {
       this.showErrorAnimation("palavra_passe1");
-      this.setState({ erro: "A repetição da palavra passe está vazia" });
+      this.setState({
+        error_: "A repetição da palavra passe está vazia",
+      });
     } else if (this.state.password !== this.state.password1) {
       this.showErrorAnimation("palavra_passe1");
-      this.setState({ erro: "As palavra passe não correspondem" });
-    } else if (this.state.telefone === "") {
-      this.showErrorAnimation("telefone");
-      this.setState({ erro: "O Telefone está vazio" });
+      this.setState({ error_: "As palavra passe não correspondem" });
+    } else if (this.state.phone_number === "") {
+      this.showErrorAnimation("phone_number");
+      this.setState({ error_: "O Telefone está vazio" });
     } else {
-      // $(".img_sp_").addClass("shos_spinner");
-      // $(".btnL, .btnR").prop("disabled", true);
+      $(".img_sp_").addClass("shos_spinner");
+      $(".btnL, .btnR").prop("disabled", true);
 
-      const appVerifier = new firebase.auth.RecaptchaVerifier(
+      var appVerifier = new firebase.auth.RecaptchaVerifier(
         "recaptcha-container"
       );
 
-      const auth = firebase
+      firebase
         .auth()
-        .signInWithPhoneNumber(this.state.telefone, appVerifier)
+        .signInWithPhoneNumber(this.state.phone_number, appVerifier)
         .then((res) => {
           if (res) {
             this.setState({ codeConfirm: res });
+
+            this.props.dispatch(
+              getFarm({
+                name: this.state.name,
+                phone_number: this.state.phone_number,
+                address: this.state.address_farm,
+              })
+            );
 
             $(".img_sp_").removeClass("shos_spinner");
             $(".btnL, .btnR").prop("disabled", false);
@@ -73,18 +84,19 @@ export default class Register extends Component {
           }
         })
         .catch((err) => {
-          console.log(err)
+          $(".img_sp_").removeClass("shos_spinner");
+          $(".btnL, .btnR").prop("disabled", false);
           if (err.message === "Invalid format.") {
-            this.setState({ erro: "Farmato do número errado" });
+            this.setState({ error_: "Farmato do número errado" });
           } else {
-            this.setState({ erro: "Falha na internet, tente de novo" });
+            console.log(err.message);
+
+            appVerifier.clear();
+            this.setState({
+              error_: "Falha na aplicação, tente de novo",
+            });
           }
         });
-
-      // //SIMULAÇÃO DO TIME QUE VAI LEVAR PARA PCONFIRMAR O NUMERO
-      // setTimeout(() => {
-
-      // }, 500)
     }
   };
 
@@ -92,7 +104,7 @@ export default class Register extends Component {
     $(".register_").fadeOut(300);
 
     setTimeout(() => {
-      $(".login").slideDown();
+      $(".login").fadeIn();
     }, 300);
     $("#register")[0].reset();
     this.setState(initalState);
@@ -100,13 +112,14 @@ export default class Register extends Component {
   };
 
   render() {
+    const { name, phone_number, address_farm, password } = this.state;
+
     return (
       <div className="form_regis register_">
-        <ConfirmarTelefone
+        <ConfirmPhoneNumber
           codigoConfirm={this.state.codeConfirm}
-          telefone={this.state.telefone}
+          userData={{ name, phone_number, address_farm, password }}
         />
-        
 
         <div className="subDiv_frm">
           <img src="images/logo.png" alt="" className="logo_re" />
@@ -124,7 +137,7 @@ export default class Register extends Component {
             className="form_"
             onSubmit={this.handleSubmit}
           >
-            <div className="form_group nome">
+            <div className="form_group name">
               <img
                 src="images/icons8_field_50px.png"
                 alt=""
@@ -134,13 +147,13 @@ export default class Register extends Component {
                 <input
                   type="text"
                   onChange={this.handleChange}
-                  id="nome"
+                  id="name"
                   className="input_fm"
-                  name="nome"
+                  name="name"
                 />
                 <label
-                  className={this.state.nome ? " labelN nome " : null}
-                  htmlFor="nome"
+                  className={this.state.name ? " labelN name " : null}
+                  htmlFor="name"
                 >
                   Nome da fazenda
                 </label>
@@ -149,12 +162,12 @@ export default class Register extends Component {
               <img
                 src="images/icons8_box_important_24px.png"
                 alt=""
-                title={this.state.erro}
-                className="img_ipt_status nome_"
+                title={this.state.error_}
+                className="img_ipt_status name_"
               />
             </div>
 
-            <div className="form_group endereco">
+            <div className="form_group address_farm">
               <img
                 src="images/icons8_address_24px.png"
                 alt=""
@@ -164,13 +177,13 @@ export default class Register extends Component {
                 <input
                   type="text"
                   onChange={this.handleChange}
-                  id="endereco"
+                  id="address_farm"
                   className="input_fm"
-                  name="endereco"
+                  name="address_farm"
                 />
                 <label
-                  className={this.state.endereco ? " labelN " : null}
-                  htmlFor="endereco"
+                  className={this.state.address_farm ? " labelN " : null}
+                  htmlFor="address_farm"
                 >
                   Endereço
                 </label>
@@ -178,8 +191,8 @@ export default class Register extends Component {
               <img
                 src="images/icons8_box_important_24px.png"
                 alt=""
-                title={this.state.erro}
-                className="img_ipt_status endereco_"
+                title={this.state.error_}
+                className="img_ipt_status address_farm_"
               />
             </div>
 
@@ -207,7 +220,7 @@ export default class Register extends Component {
               <img
                 src="images/icons8_box_important_24px.png"
                 alt=""
-                title={this.state.erro}
+                title={this.state.error_}
                 className="img_ipt_status palavra_passe_"
               />
             </div>
@@ -236,12 +249,12 @@ export default class Register extends Component {
               <img
                 src="images/icons8_box_important_24px.png"
                 alt=""
-                title={this.state.erro}
+                title={this.state.error_}
                 className="img_ipt_status palavra_passe1_"
               />
             </div>
 
-            <div className="form_group telefone">
+            <div className="form_group phone_number">
               <img
                 src="images/icons8_phone_26px_1.png"
                 alt=""
@@ -251,13 +264,13 @@ export default class Register extends Component {
                 <input
                   type="text"
                   onChange={this.handleChange}
-                  id="telefone"
+                  id="phone_number"
                   className="input_fm"
-                  name="telefone"
+                  name="phone_number"
                 />
                 <label
-                  className={this.state.telefone ? " labelN " : null}
-                  htmlFor="telefone"
+                  className={this.state.phone_number ? " labelN " : null}
+                  htmlFor="phone_number"
                 >
                   Telefone
                 </label>
@@ -265,13 +278,15 @@ export default class Register extends Component {
               <img
                 src="images/icons8_box_important_24px.png"
                 alt=""
-                title={this.state.erro}
-                className="img_ipt_status telefone_"
+                title={this.state.error_}
+                className="img_ipt_status phone_number_"
               />
             </div>
           </form>
 
-          {this.state.erro ? <p className="err_S">{this.state.erro}</p> : null}
+          {this.state.error_ ? (
+            <p className="err_S err_R">{this.state.error_}</p>
+          ) : null}
 
           <img
             src="images/icons8_Iphone_Spinner_32px.png"
@@ -295,3 +310,8 @@ export default class Register extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({ state });
+const mapDispatchToProps = (dispatch) => ({ dispatch });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

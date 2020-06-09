@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import "./confirmN.scss";
 import "./register.scss";
 import $ from "jquery";
-import firebase from './firebase'
+import firebase from "./firebase";
 import RegisteredWithSucess from "./sucess";
+import passwordHash from "password-hash";
 
-const ConfirmarTelefone = ({ codigoConfirm, telefone }) => {
-  const [codigo, setCodigo] = useState(0);
+const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
+  const [codigo, setCodigo] = useState();
   const [erro, setErro] = useState("");
-  const [gotUser, setUser] = useState(false)
-  var codConf = codigoConfirm
+  const [gotUser, setUser] = useState(false);
+  var codConf = codigoConfirm;
 
   const handleChange = (e) => {
     setCodigo(e.target.value);
@@ -20,49 +21,59 @@ const ConfirmarTelefone = ({ codigoConfirm, telefone }) => {
   const resentCode = () => {
     $(".codigo_").removeClass("img_sh");
     setErro("");
+    setCodigo(0)
 
     const appVerifier = new firebase.auth.RecaptchaVerifier(
       "recaptcha-container2"
     );
 
-      firebase.auth()
-        .signInWithPhoneNumber(telefone, appVerifier)
-        .then((res) => {
-          if (res) {
-            codConf = res
-            $(".img_sp_").removeClass("shos_spinner");
-            $(".btnL, .btnR").prop("disabled", false);
-            $(".overlay_conf").fadeIn();
-          }
-        })
+    firebase
+      .auth()
+      .signInWithPhoneNumber(userData.phone_number, appVerifier)
+      .then((res) => {
+        if (res) {
+          codConf = res;
+          $(".img_sp_").removeClass("shos_spinner");
+          $(".btnL, .btnR").prop("disabled", false);
+          $(".overlay_conf").fadeIn();
+        }
+      });
   };
-
- 
 
   const confirmCode = () => {
     if (codigo > 0) {
-
-    
-
       codConf
         .confirm(codigo)
         .then((res) => {
           if (res.user) {
-            closeConfirmation()
-            $(".sucessDiv").fadeIn()
-            setUser(true)
+            const user = firebase.auth().currentUser;
+            const hashedpassword = passwordHash.generate(userData.password);
+
+            if (user && hashedpassword) {
+              console.log(user.uid);
+              console.log(hashedpassword);
+              const firestore = firebase.firestore();
+
+              firestore.doc("farms/77656757575" + user.uid).add({
+                name: userData.name,
+                address_farm: userData.address_farm,
+                phone_number: userData.phone_number,
+                password: hashedpassword
+              }).then(res=> {
+                console.log("sucess")
+              }).catch(err => {
+                console.log("error")
+              })
+            }
+
+            closeConfirmation();
+            $(".sucessDiv").fadeIn();
+            setUser(true);
           }
         })
         .catch((err) => {
           setErro("Codigo errado, tente reenviar a mensagem");
         });
-
-     
-      // if () {
-      //   $(".img_spinner_conf").animate({ opacity: "1" });
-      // } else {
-      //   setErro("Codigo errado, tente reenviar a mensagem")
-      // }
     } else {
       $(".codigo_").addClass("img_sh");
       setErro("O campo está  vazio");
@@ -75,7 +86,6 @@ const ConfirmarTelefone = ({ codigoConfirm, telefone }) => {
 
   return (
     <div className="overlay_confirm overlay_conf">
-
       <RegisteredWithSucess isReal={gotUser} />
 
       <div className="div_conf">
@@ -101,6 +111,7 @@ const ConfirmarTelefone = ({ codigoConfirm, telefone }) => {
                 type="number"
                 onChange={handleChange}
                 id="codigo"
+                value={codigo}
                 className="input_fm"
                 name="codigo"
                 placeholder="Codido"
@@ -134,4 +145,4 @@ const ConfirmarTelefone = ({ codigoConfirm, telefone }) => {
   );
 };
 
-export default ConfirmarTelefone;
+export default ConfirmPhoneNumber;

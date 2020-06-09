@@ -37,7 +37,7 @@ export default class Login extends Component {
   showRegister = () => {
     $(".login").fadeOut(300);
     setTimeout(() => {
-      $(".register_").slideDown();
+      $(".register_").fadeIn();
     }, 300);
 
     $("#login")[0].reset();

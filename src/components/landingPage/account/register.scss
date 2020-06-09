@@ -223,7 +223,7 @@
     transition: 0.5s;
     margin-right: 20px;
     color: white;
-    transition: .5s;
+    transition: 0.5s;
     background: linear-gradient(to left, #3e89fa, #3179e3);
     margin-bottom: 20px;
   }
@@ -265,4 +265,10 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+.err_R {
+  font-size: 11pt !important;
+  font-family: $goldMed;
+  margin-top: 20px !important;
 }

@@ -3,18 +3,12 @@ import "./confirmN.scss";
 import "./register.scss";
 import { Redirect } from "react-router-dom";
 
-const RegisteredWithSucess = ({ isReal }) => {
-  const [go, setGo] = useState(false);
-
-  if (isReal) {
-    setTimeout(() => {
-      setGo(true);
-    }, 2000);
-  }
-
+const RegisteredWithSucess = () => {
   return (
     <div className="overlay_confirm sucessDiv">
-      {go ? <Redirect to="dashboard" /> : null}
+      {setTimeout(() =>(
+        <Redirect to="dashboard" />
+      ),1000)}
 
       <div className="div_conf">
         <div className="div_frm_cnf div_sc_dv">
