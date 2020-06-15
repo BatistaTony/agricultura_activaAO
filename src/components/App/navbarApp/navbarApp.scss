@@ -1,0 +1,160 @@
+@import "./../../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.navbarApp {
+  box-shadow: 0 0 5px gray;
+}
+
+.menu_App {
+  @include flexbox();
+
+  .menu {
+    display: block !important;
+    margin-right: 50px;
+
+    @media (max-width: 750px) {
+      margin-right: -10px;
+    }
+
+    li {
+      position: relative;
+    }
+  }
+}
+
+.alert_n_ {
+  position: absolute;
+  top: -8px;
+  right: -2px;
+  background-color: red;
+  font-family: $goldMed;
+  width: 15px;
+  height: 15px;
+  font-size: 8pt;
+  @include flexbox();
+  color: white;
+  border-radius: 100%;
+}
+
+.img_mn {
+  width: 20px;
+  height: 20px;
+}
+
+.farm {
+  @include flexbox(row, flex-start, center);
+  position: relative;
+
+  .img_mn_op {
+    @extend.img_mn;
+    margin-right: 3px;
+    width: 22px;
+    height: 22px;
+    margin-bottom: 3px;
+
+    @media (max-width: 750px) {
+      display: none;
+    }
+  }
+
+  .nm_farm {
+    font-size: 10pt;
+    font-family: $goldMed;
+
+    @media (max-width: 750px) {
+      display: none;
+    }
+  }
+
+  .img_opened_op {
+    background-color: white !important;
+    height: 50px !important;
+    border-radius: 5px !important;
+    margin-top: 30px;
+    @include flexbox(
+      row !important,
+      flex-start !important,
+      flex-start !important
+    );
+    box-shadow: 1px 0px 1px 1px rgb(177, 177, 177);
+  }
+
+  .img_frm_op {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(233, 232, 232);
+    @include flexbox();
+    border-radius: 100%;
+    margin-left: 10px;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: rgb(241, 240, 240);
+    }
+
+    img {
+      margin-top: -2px;
+      width: 19px;
+      height: 19px;
+    }
+  }
+}
+
+.menu_op_ {
+  position: absolute;
+  right: -1px;
+  display: none;
+  top: 55px;
+  width: 170px;
+  height: 170px;
+  z-index: 8;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 01px 1px 1px rgb(177, 177, 177);
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  overflow: hidden;
+  
+
+  .div_menu_op_ {
+    width: 100% !important;
+    height: 100%;
+    padding-bottom: 5px;
+    position: relative;
+    @include flexbox(column, flex-end);
+  }
+
+  .farm_nme {
+    font-size: 10pt;
+    top: 7%;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+  }
+
+  .menu_op {
+    list-style: none;
+    background-color: white;
+    width: 100%;
+
+    li {
+      width: 100%;
+      padding: 7px;
+      font-size: 9pt;
+      box-sizing: border-box;
+      font-family: $goldMed;
+      text-align: center;
+      border-bottom: 1px solid rgb(214, 214, 214);
+      transition: 0.5s;
+      cursor: default;
+
+      &:hover {
+        background-color: rgb(243, 243, 243);
+      }
+
+      &:last-child {
+        border-bottom:0px;
+      }
+    }
+  }
+}

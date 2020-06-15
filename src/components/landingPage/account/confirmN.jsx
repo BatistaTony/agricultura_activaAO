@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import "./confirmN.scss";
 import "./register.scss";
 import $ from "jquery";
-import firebase from "./firebase";
-import RegisteredWithSucess from "./sucess";
-import passwordHash from "password-hash";
+import firebase from "./../../firebase";
+import { useDispatch } from "react-redux";
+import { getFarm } from "./../../store/actions/farm";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
-const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
+const ConfirmPhoneNumber = ({ codigoConfirm, farmData }) => {
   const [codigo, setCodigo] = useState();
   const [erro, setErro] = useState("");
-  const [gotUser, setUser] = useState(false);
+  const [gotFarm, setFar] = useState(false);
   var codConf = codigoConfirm;
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setCodigo(e.target.value);
@@ -21,7 +24,6 @@ const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
   const resentCode = () => {
     $(".codigo_").removeClass("img_sh");
     setErro("");
-    setCodigo(0)
 
     const appVerifier = new firebase.auth.RecaptchaVerifier(
       "recaptcha-container2"
@@ -29,14 +31,16 @@ const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
 
     firebase
       .auth()
-      .signInWithPhoneNumber(userData.phone_number, appVerifier)
+      .signInWithPhoneNumber(farmData.phone_number, appVerifier)
       .then((res) => {
         if (res) {
           codConf = res;
-          $(".img_sp_").removeClass("shos_spinner");
           $(".btnL, .btnR").prop("disabled", false);
           $(".overlay_conf").fadeIn();
         }
+      })
+      .catch((err) => {
+        setErro(err.message);
       });
   };
 
@@ -46,38 +50,85 @@ const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
         .confirm(codigo)
         .then((res) => {
           if (res.user) {
-            const user = firebase.auth().currentUser;
-            const hashedpassword = passwordHash.generate(userData.password);
-
-            if (user && hashedpassword) {
-              console.log(user.uid);
-              console.log(hashedpassword);
-              const firestore = firebase.firestore();
-
-              firestore.doc("farms/77656757575" + user.uid).add({
-                name: userData.name,
-                address_farm: userData.address_farm,
-                phone_number: userData.phone_number,
-                password: hashedpassword
-              }).then(res=> {
-                console.log("sucess")
-              }).catch(err => {
-                console.log("error")
-              })
-            }
-
-            closeConfirmation();
-            $(".sucessDiv").fadeIn();
-            setUser(true);
+            addFarmToDatabase();
           }
         })
         .catch((err) => {
+          console.log(err);
           setErro("Codigo errado, tente reenviar a mensagem");
         });
     } else {
-      $(".codigo_").addClass("img_sh");
       setErro("O campo está  vazio");
     }
+  };
+
+  const addFarmToDatabase = () => {
+    const id = firebase.auth().currentUser.uid;
+
+    const saveUser = () => {
+      const firestore = firebase.firestore();
+
+      firestore
+        .doc("farms/" + id)
+        .set({
+          name: farmData.name,
+          address_farm: farmData.address_farm,
+          phone_number: farmData.phone_number,
+          password: farmData.password,
+        })
+        .then((res) => {
+          closeConfirmation();
+          dispatch(
+            getFarm({
+              name: farmData.name,
+              address_farm: farmData.address_farm,
+              phone_number: farmData.phone_number,
+            })
+          );
+          setFar(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    seeIfUserExist(id)
+      .then((res) => {
+        if (res) {
+          setErro("Ja existe");
+        }
+      })
+      .catch((err) => {
+        saveUser();
+      });
+  };
+
+  const seeIfUserExist = (id) => {
+    const firestore = firebase.firestore();
+
+    const userExist = new Promise((res, rej) => {
+      firestore
+        .collection("farms")
+        .get()
+        .then((users) => {
+          console.log(users.Wv.docChanges.length);
+          if (users.Wv.docChanges.length > 0) {
+            users.forEach((user) => {
+              if (user.id === id) {
+                res(true);
+              } else {
+                rej(false);
+              }
+            });
+          } else {
+            rej(false);
+          }
+        });
+    });
+
+    return userExist.then((res) => {
+      return res;
+    });
   };
 
   const closeConfirmation = () => {
@@ -86,20 +137,20 @@ const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
 
   return (
     <div className="overlay_confirm overlay_conf">
-      <RegisteredWithSucess isReal={gotUser} />
+      {gotFarm ? <Redirect to="/dashboard" /> : null}
 
       <div className="div_conf">
         <div className="div_frm_cnf">
           <button onClick={closeConfirmation} className="btnClose">
             <img src="images/icons8_delete_50px_4.png" alt="" />
           </button>
-          <h1 className="titl_cnf">Codigo de verificação do telefone</h1>
+          <h1 className="titl_cnf">Verificação do Telefone</h1>
           <p className="text_cnf">
-            Enviamos um código de verificação no numero: 945 555 565, se não
-            click: <mark onClick={resentCode}>Reenviar o código</mark> .
+            Enviamos um código de verificação no número {farmData.phone_number},
+            se não click: <mark onClick={resentCode}>Reenviar o código</mark> .
           </p>
 
-          {erro ? <p className="err_S"> {erro} </p> : null}
+          {erro ? <p className="err_S err_cfr"> {erro} </p> : null}
           <div className="form_group form_group_conf">
             <img
               src="images/icons8_password_24px.png"
@@ -111,7 +162,6 @@ const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
                 type="number"
                 onChange={handleChange}
                 id="codigo"
-                value={codigo}
                 className="input_fm"
                 name="codigo"
                 placeholder="Codido"
@@ -125,12 +175,6 @@ const ConfirmPhoneNumber = ({ codigoConfirm, userData }) => {
               className="img_ipt_status codigo_"
             />
           </div>
-
-          <img
-            src="images/icons8_Iphone_Spinner_32px.png"
-            alt=""
-            className="img_spinner img_spinner_conf"
-          />
 
           <div className="frm_btn div_btn_cnf">
             <button onClick={confirmCode} className="btn_rg btnConfirm">

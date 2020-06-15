@@ -59,11 +59,12 @@
 
 .service_item {
   width: 30%;
-  height: auto;
+  height: 300px;
   padding: 1%;
+
   padding-bottom: 2%;
-  background-color: #ebeae1;
-  @include flexbox(column);
+  background-color: #d8d8d8;
+  @include flexbox(column, flex-start);
   transition: 0.5s;
   cursor: default;
 
@@ -72,21 +73,24 @@
     margin-top: 20px;
     align-items: flex-start;
     padding-left: 5%;
+    height: auto;
     box-sizing: border-box;
   }
 
-    @media (max-width: 500px) {
-      align-items: center;
-      padding-left: 0;
-    }
+  @media (max-width: 500px) {
+    align-items: center;
+    padding-left: 0;
+  }
 
   .img_item_sr {
     width: 90px;
     height: 90px;
+    margin-top: 20px;
 
     @media (max-width: 870px) {
       width: 70px;
       height: 70px;
+      margin-top: 0;
     }
   }
 
@@ -103,11 +107,11 @@
     text-align: center;
     font-family: $goldMed;
 
-      @media (max-width: 860px) {
+    @media (max-width: 860px) {
       text-align: left;
-      }
+    }
 
-      @media (max-width: 500px) {
+    @media (max-width: 500px) {
       text-align: center;
     }
   }

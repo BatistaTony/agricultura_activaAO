@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="contentItem">
           <ReactWOW animation="slideInLeft" duration="2s" delay="0.4s">
             <h1 className="item_title">
-              The heart of our country and other motherfucker shit
+              Faça uma colheita com objectivo, regista-se para obter mais contractos.
             </h1>
           </ReactWOW>
           <ReactWOW animation="slideInLeft" duration="2s" delay="0.4s">

@@ -1,0 +1,96 @@
+@import './fonts.scss';
+
+@mixin flexbox($dir: row, $j: center, $a: center) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $j;
+  align-items: $a;
+}
+
+@mixin getOutBorder {
+  outline: none;
+  border: none;
+}
+
+@mixin rippleEffect {
+ 
+
+  .btn_rg:hover {
+    background: #3e89fa radial-gradient(circle, transparent 1%, #3e89fa 1%)
+      center/15000%;
+  }
+
+  .btn_rg:active {
+    background-color: #70b7f1;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+
+.btnOpc {
+    position: absolute;
+    z-index: 12;
+    top: 9%;
+    right: 2%;
+    @include flexbox();
+    .dot_ {
+      width: 6px;
+      height: 6px;
+      margin-right: 3px;
+      background-color: white;
+      border-radius: 100%;
+    }
+  }
+
+  .div_menu_card {
+    width: 120px;
+    position: absolute;
+    display: none;
+    top: 27px;
+    right: 6px;
+    z-index: 1;
+    background-color: white;
+
+    box-shadow: 0 0 2px rgb(226, 226, 226);
+    border-radius: 7px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      float: left;
+      right: 2%;
+      top: -8px;
+      margin-left: -15px;
+      border-top-width: 11px;
+      border-bottom-width: 10px;
+      border-left-width: 11px;
+      border-right-width: 11px;
+      border-style: solid;
+      padding-left: 2.5px;
+      height: auto;
+      box-sizing: content-box;
+      border-color: white transparent transparent transparent;
+      transform: translateY(-50%) rotate(180deg);
+      z-index: 9;
+    }
+  }
+
+  .menu_ {
+    list-style: none;
+    width: 100%;
+    @include flexbox(column);
+
+    li {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      font-family: $goldMed;
+      width: 100%;
+      cursor: default;
+      text-align: left;
+      font-size: 8pt;
+      padding-left: 7px;
+      box-sizing: border-box;
+      border-bottom: 0.5px solid rgb(196, 196, 196);
+    }
+  }

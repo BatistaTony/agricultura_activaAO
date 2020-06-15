@@ -1,0 +1,149 @@
+@import "./../../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.card_list {
+  width: 100%;
+  @include flexbox(column);
+}
+
+.header_list {
+  width: 90%;
+  margin-top: 40px;
+  @include flexbox(row, space-between, flex-end);
+}
+
+.titl_av {
+  font-size: 14pt;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.search_div {
+  .til_src {
+    font-size: 20pt;
+    @media (max-width: 590px) {
+      font-size: 17pt;
+    }
+  }
+
+  @media (max-width: 590px) {
+    width: 100%;
+  }
+
+  .ipt_src {
+    width: 300px;
+    height: 37px;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-size: 11pt;
+    box-sizing: border-box;
+    color: black;
+    @include getOutBorder();
+    background-color: white;
+
+    &::placeholder {
+      color: rgb(240, 238, 238);
+    }
+
+    @media (max-width: 590px) {
+      width: 100%;
+    }
+  }
+}
+
+.btnAddharvest {
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  @include getOutBorder();
+  border-radius: 5px;
+  font-size: 10pt;
+  font-family: $goldMed;
+  z-index: 6;
+
+  @media (max-width: 750px) {
+    position: fixed;
+    bottom: 2%;
+    right: 5%;
+    box-shadow: 0 0 5px;
+  }
+}
+
+.list_ {
+  width: 90%;
+  height: 200px;
+  margin-top: 30px;
+  @include flexbox(row, space-between, flex-start);
+  flex-wrap: wrap;
+}
+
+.card {
+  float: left;
+  width: 290px;
+  height: 110px;
+  position: relative;
+  background: linear-gradient(to left, #fa4a39, #ef3169);
+  border-radius: 7px;
+  margin-bottom: 30px;
+
+  @media (max-width: 995px) {
+    width: 32%;
+  }
+
+  @media (max-width: 750px) {
+    width: 48%;
+  }
+
+  @media (max-width: 590px) {
+    width: 100%;
+  }
+
+  
+
+  .time_ {
+    position: absolute;
+    top: 20%;
+    color: rgb(223, 223, 223);
+    font-size: 8pt;
+    right: 2%;
+  }
+
+  .prod_ {
+    margin-top: 5px;
+    color: white;
+    font-size: 16pt;
+    margin-left: 10px;
+  }
+
+  .harvest_today {
+    font-size: 20pt;
+    position: absolute;
+    bottom: 10%;
+    left: 3.5%;
+  }
+
+  .harvest_total {
+    font-size: 40pt;
+    position: absolute;
+    bottom: 6%;
+    right: 2%;
+  }
+
+  .cl_n_mdida {
+    color: white;
+    font-size: 10pt;
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+  }
+}
+
+.new_card {
+  background: linear-gradient(to left, #d9823f, #ff7b17);
+}
+
+.old_card {
+  background: linear-gradient(to left, #37bbca, #0091b6);
+}
+

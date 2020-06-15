@@ -12,7 +12,7 @@
 }
 
 .overlay_conf {
-    display: none;
+  display: none;
 }
 
 .div_conf {
@@ -22,11 +22,12 @@
 }
 
 .div_frm_cnf {
-  width: 400px;
+  width: 370px;
   height: auto;
   padding: 2em;
   margin-top: -30px;
   margin-bottom: 20px;
+  padding-bottom: 10px;
   background-color: white;
   border-radius: 20px;
   @include flexbox(column);
@@ -34,6 +35,7 @@
 
   @media (max-width: 550px) {
     width: 70% !important;
+    padding: 2em;
   }
 }
 
@@ -46,7 +48,7 @@
   margin-bottom: 10px;
 
   @media (max-width: 550px) {
-    font-size: 14pt;
+    font-size: 12pt;
     width: 80%;
   }
 }
@@ -56,29 +58,37 @@
   text-align: center;
   font-family: $goldReg;
 
+  @media (max-width: 550px) {
+    font-size: 11pt;
+  }
+
   mark {
     background-color: transparent;
     color: #3e89fa;
-    font-family: $goldSB;
+    font-family: $goldMed;
     cursor: default;
   }
 }
 
 .err_S {
   color: red;
-  font-size: 10pt;
-  margin-top: 10px;
-  margin-bottom: -10px;
+  font-size: 11pt;
+  font-family: $goldMed;
+}
+
+.err_cfr {
+  margin-top: 5px;
+  margin-bottom: -5px;
 }
 
 .form_group_conf {
   width: 300px;
-  height: 50px;
+  height: 40px;
   overflow: hidden;
-  box-shadow: 0 0 5px gray;
   border-radius: 5px !important;
   border-bottom: none;
   margin-top: 20px;
+  margin-bottom: 25px;
 
   @media (max-width: 550px) {
     width: 90%;
@@ -111,11 +121,11 @@
   right: 0;
   background-color: transparent;
   @include getOutBorder();
-  margin: 10px;
+  margin: 15px;
 
   img {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -129,8 +139,11 @@
 
 .btnConfirm {
   width: 270px !important;
-  height: 40px !important;
+  height: 35px !important;
   margin-right: 0 !important;
+  border-radius: 5px !important;
+  font-size: 11pt !important;
+  margin-top: -25px;
 
   @media (max-width: 550px) {
     width: 200px !important;
@@ -138,11 +151,11 @@
 }
 
 .sucessDiv {
-    display: none;
+  display: none;
 }
 
 .div_btn_cnf {
-  @include flexbox();   
+  @include flexbox();
   @media (max-width: 550px) {
     width: 100% !important;
   }
@@ -158,8 +171,11 @@
 
 .div_sc_dv {
   width: 300px;
+  padding-top: 20px;
+  border-radius: 10px;
+  padding-bottom: 20px;
 }
 
 .img_dn_sc {
-  margin-top: 20px;
+  margin-top: 10px;
 }

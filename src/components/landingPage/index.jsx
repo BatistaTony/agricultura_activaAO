@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./navbar/navbar";
-import "./styles/main.scss";
+import "./../styles/main.scss";
 import Hero from "./hero/hero";
 import Gallery from "./gallery/gallery";
 import About from "./about/about";
@@ -20,13 +20,10 @@ export default function LangingPage() {
       <ReactWOW animation="fadeIn" duration="2s" delay="0.4s">
         <div className="src_demo">
           <h1 className="title_sr_dm">
-            The heart of our country and other motherfucker shit
+            Tenha uma colheita já com o caminho e destino traçado
           </h1>
           <p className="text_sr_dm">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Perferendis, eum! Qui magni molestiae, voluptatem cumque soluta,
-            aliquam quidem iure maiores dolorum a voluptatibus tempora nihil
-            vitae molestias perspiciatis aspernatur libero.
+            A fazenda pode adquirir um veiculo do Projecto e pagar as contas consoante a venda e o trajacto percorrido
           </p>
           <div className="itemBtns">
             <button className="btnItem btnItem_dm">

@@ -1,0 +1,122 @@
+@import "./../../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.alert {
+  @include flexbox(column);
+}
+
+.titl_alert {
+  width: 90%;
+  font-size: 18pt;
+  margin-top: 50px;
+
+  mark {
+    background-color: transparent;
+    font-family: $goldSB;
+  }
+}
+
+.alert_list_div {
+  width: 90%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.list_alert {
+  margin-top: 50px;
+  @include flexbox(row, space-between, flex-start);
+  flex-wrap: wrap;
+
+  @media (max-width: 999px) {
+  }
+}
+
+.alert_card {
+  width: 30%;
+  height: 200px;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 40px;
+  box-shadow: 0 0 2px gray;
+
+  @media (max-width: 830px) {
+    width: 48%;
+  }
+
+  @media (max-width: 550px) {
+    width: 100%;
+  }
+
+  .menu_card_alert {
+    right: 7.5px;
+    top: 25.2px;
+  }
+
+  .header_card {
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(to right, #f569b2, #ec4b96);
+    box-sizing: border-box;
+    padding-left: 10px;
+    position: relative;
+  }
+
+  .market_name {
+    @include flexbox(row);
+    position: absolute;
+    margin-top: 7px;
+
+    font-size: 15pt;
+    color: white;
+
+    .icon_market {
+      width: 30px;
+      margin-right: 6px;
+      height: 30px;
+    }
+  }
+
+  .location_market {
+    font-size: 10pt;
+    color: rgb(240, 240, 240);
+    position: absolute;
+
+      bottom: 20px;
+  }
+
+  .date_alert {
+    @extend .location_market;
+    font-size: 9pt;
+
+      bottom: 4px;
+    
+  }
+}
+
+.body_card_alert {
+  width: 100%;
+  height: 55%;
+  padding-left: 10px;
+
+  .quant_cases {
+    font-size: 25pt;
+    font-family: $goldMed;
+  }
+
+  .uni_med {
+    font-size: 11pt;
+    margin-top: -5px;
+    color: rgb(151, 151, 151);
+  }
+
+  .market_number {
+    font-family: $goldMed;
+    color: rgb(87, 86, 86);
+
+    @media (max-width: 999px) {
+      font-size: 20pt;
+    }
+  }
+}

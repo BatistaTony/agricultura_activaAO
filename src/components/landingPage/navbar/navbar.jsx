@@ -2,7 +2,6 @@ import React from "react";
 import "./navbar.scss";
 import $ from "jquery";
 import { Link } from "react-router-dom";
-import ReactWOW from "react-wow";
 
 export default function Navbar({ isHome, item }) {
   const openMenu = () => {
@@ -20,12 +19,9 @@ export default function Navbar({ isHome, item }) {
   return (
     <div className={isHome ? "navbar" : "navbar navbarS"} id="home">
       <div className="logo">
-        <ReactWOW animation="fadeIn" duration="2s" delay="0.4s">
           <img src="images/logo.png" alt="" />
-        </ReactWOW>
       </div>
 
-      <ReactWOW animation="fadeIn" duration="2s" delay="0.4s">
         <div className="menu">
           <ul className="list_item">
             <li className={item === "home" ? "active_item" : null}>
@@ -42,7 +38,6 @@ export default function Navbar({ isHome, item }) {
             </li>
           </ul>
         </div>
-      </ReactWOW>
 
       <div className="btnMenu" onClick={openMenu}>
         <div className="line line1"></div>

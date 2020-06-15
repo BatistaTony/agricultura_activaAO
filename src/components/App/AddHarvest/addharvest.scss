@@ -1,0 +1,122 @@
+@import "./../../styles/mixins.scss";
+@import "./../../styles/fonts.scss";
+
+.overlayAdd {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba(19, 19, 19, 0.651);
+}
+
+.addharvest_ {
+  width: 100%;
+  height: 100%;
+  @include flexbox();
+}
+
+._div_form_add {
+  @include flexbox(column, flex-start);
+  width: 600px;
+  height: auto;
+  padding-bottom: 20px;
+  background-color: white;
+  border-radius: 5px;
+
+  @media (max-width: 730px) {
+    width: 90%;
+    flex-direction: column !important;
+    flex-wrap: nowrap;
+  }
+}
+
+.titl_add_ {
+  font-size: 19pt;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+.form_add_ {
+  width: 90%;
+  @include flexbox(row, flex-start, flex-start);
+  flex-wrap: wrap;
+
+  @media (max-width: 730px) {
+    flex-direction: column !important;
+    flex-wrap: nowrap;
+  }
+}
+
+.form_group_add_ {
+  @include flexbox(column, flex-start, flex-start);
+
+  width: 170px;
+  margin-bottom: 15px;
+
+  @media (max-width: 730px) {
+    width: 100% !important;
+  }
+
+  label {
+    font-size: 11pt;
+    font-family: $goldMed;
+    margin-bottom: 4px;
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+    @include getOutBorder();
+    background-color: rgb(238, 238, 238);
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 0.5px solid rgb(202, 202, 202);
+    padding-left: 10px;
+  }
+
+  &:nth-child(1) {
+    width: 350px;
+    margin-right: 20px;
+  }
+}
+
+.err_add_harv {
+  width: 90%;
+  color: red;
+  font-size: 12pt;
+  font-family: $goldMed;
+}
+
+.btnsAdd {
+  width: 90%;
+  margin-top: 20px;
+  @include flexbox(row, flex-end, flex-end);
+
+  
+
+  .btnAdd {
+    @include getOutBorder();
+    width: 130px;
+    height: 35px;
+    border: 0.5px solid rgb(202, 202, 202);
+    border-radius: 5px;
+    font-size: 11pt;
+
+    @media (max-width: 730px) {
+      width: 200px;
+    }
+
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    &:last-child {
+      background-color: #4095a5;
+      color: white;
+    }
+  }
+}

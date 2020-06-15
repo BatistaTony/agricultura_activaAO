@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import "./register.scss";
 import $ from "jquery";
 import ConfirmPhoneNumber from "./confirmN";
-import firebase from "./firebase";
+import firebase from "./../../firebase";
 import { connect } from "react-redux";
-import { getFarm } from "./../../store/actions/farm";
 
 const initalState = {
   name: "",
@@ -18,7 +17,6 @@ const initalState = {
 
 class Register extends Component {
   state = initalState;
-
   handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -35,6 +33,8 @@ class Register extends Component {
   };
 
   register = () => {
+    this.setState({ error_: "" });
+
     if (this.state.name === "") {
       this.showErrorAnimation("name");
       this.setState({ error_: "O Nome está vazio" });
@@ -47,7 +47,7 @@ class Register extends Component {
     } else if (this.state.password1 === "") {
       this.showErrorAnimation("palavra_passe1");
       this.setState({
-        error_: "A repetição da palavra passe está vazia",
+        error_: "Repete a palavra passe",
       });
     } else if (this.state.password !== this.state.password1) {
       this.showErrorAnimation("palavra_passe1");
@@ -56,8 +56,8 @@ class Register extends Component {
       this.showErrorAnimation("phone_number");
       this.setState({ error_: "O Telefone está vazio" });
     } else {
-      $(".img_sp_").addClass("shos_spinner");
-      $(".btnL, .btnR").prop("disabled", true);
+      $(".img_sp_").fadeIn();
+      $(".btnL, .btnR, .input_fm").prop("disabled", true);
 
       var appVerifier = new firebase.auth.RecaptchaVerifier(
         "recaptcha-container"
@@ -69,31 +69,20 @@ class Register extends Component {
         .then((res) => {
           if (res) {
             this.setState({ codeConfirm: res });
-
-            this.props.dispatch(
-              getFarm({
-                name: this.state.name,
-                phone_number: this.state.phone_number,
-                address: this.state.address_farm,
-              })
-            );
-
-            $(".img_sp_").removeClass("shos_spinner");
-            $(".btnL, .btnR").prop("disabled", false);
+            $(".img_sp_").fadeOut();
+            $(".btnL, .btnR, .input_fm").prop("disabled", false);
             $(".overlay_conf").fadeIn();
           }
         })
         .catch((err) => {
-          $(".img_sp_").removeClass("shos_spinner");
-          $(".btnL, .btnR").prop("disabled", false);
+          $(".img_sp_").fadeOut();
+          $(".btnL, .btnR, .input_fm ").prop("disabled", false);
           if (err.message === "Invalid format.") {
             this.setState({ error_: "Farmato do número errado" });
           } else {
-            console.log(err.message);
-
             appVerifier.clear();
             this.setState({
-              error_: "Falha na aplicação, tente de novo",
+              error_: "Falha na conexão, tente de novo",
             });
           }
         });
@@ -102,13 +91,12 @@ class Register extends Component {
 
   showLogin = () => {
     $(".register_").fadeOut(300);
-
     setTimeout(() => {
       $(".login").fadeIn();
     }, 300);
     $("#register")[0].reset();
     this.setState(initalState);
-    $(".img_spinner").removeClass("shos_spinner");
+    $(".img_spinner").fadeOut();
   };
 
   render() {
@@ -118,9 +106,8 @@ class Register extends Component {
       <div className="form_regis register_">
         <ConfirmPhoneNumber
           codigoConfirm={this.state.codeConfirm}
-          userData={{ name, phone_number, address_farm, password }}
+          farmData={{ name, phone_number, address_farm, password }}
         />
-
         <div className="subDiv_frm">
           <img src="images/logo.png" alt="" className="logo_re" />
 

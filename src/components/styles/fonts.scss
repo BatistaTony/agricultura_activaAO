@@ -1,8 +1,12 @@
-
-$goldReg: Goldplay-Regular;
-$goldMed: Goldplay-Medium;
+$goldMed:Goldplay-Medium ;
 $goldSB:Goldplay-SemiBold;
-$goldBol: Goldplay-Bold;
+$goldReg:Goldplay-Regular;
+
+
+@font-face {
+    src: url(./fonts/goldplay/GoldplaySemiBold.otf);
+    font-family:Goldplay-SemiBold ;
+}
 
 @font-face {
     src: url(./fonts/goldplay/GoldplayRegular.otf);
@@ -11,16 +15,5 @@ $goldBol: Goldplay-Bold;
 
 @font-face {
     src: url(./fonts/goldplay/GoldplayMedium.otf);
-    font-family:Goldplay-Medium;
+    font-family:Goldplay-Medium ;
 }
-
-@font-face {
-    src: url(./fonts/goldplay/GoldplaySemiBold.otf);
-    font-family:Goldplay-SemiBold;
-}
-
-@font-face {
-    src: url(./fonts/goldplay/GoldplayBold.otf);
-    font-family:Goldplay-Bold;
-}
-
