@@ -114,8 +114,8 @@ class Register extends Component {
           <h1 className="titl_rg_form">Regista-se, é gratuito</h1>
 
           <p className="txt_form">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci,
-            distinctio doloremque!
+            Expande a tua boa colheita para todos os mercados de Angola, tenha
+            mais contractos e melhor gestão das colheitas.
           </p>
 
           <form

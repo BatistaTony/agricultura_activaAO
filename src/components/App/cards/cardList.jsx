@@ -4,6 +4,7 @@ import Card from "./card";
 import $ from "jquery";
 import AddHarvest from "../AddHarvest/addharvest";
 import { connect } from "react-redux";
+import firebase from "./../../firebase";
 
 class CardList extends React.Component {
   state = {
@@ -16,6 +17,28 @@ class CardList extends React.Component {
     e.preventDefault();
     this.setState({ haverst_name_: e.target.value });
   };
+
+  componentDidMount() {
+    const firestore = firebase.firestore();
+
+    const refHar = firestore.collection("farm_harvests");
+
+    const query = refHar.where(
+      "harvest_owner",
+      "==",
+      this.props.state.Farm.phone_number
+    );
+
+    query.onSnapshot((docs) => {
+      const data = [];
+
+      docs.forEach((doc) => {
+        data.push({...doc.data(), harvest_id: doc.id});
+      });
+
+      this.setState({ harvest: data });
+    });
+  }
 
   addHarvest = () => {
     $(".overlayAdd").fadeIn();

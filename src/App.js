@@ -13,7 +13,6 @@ function App() {
 
   return (
     <Router>
-      <Switch>
         <div className="App">
           <Route exact path="/" component={LangingPage} />
           <Route exact path="/register" component={Account} />
@@ -21,17 +20,15 @@ function App() {
             exact
             path="/dashboard"
             component={Dashboard}
-            authed={1}
+            authed={Farm.phone_number}
           />
           <PrivateRouter
             exact
             path="/alerta_scasseis"
             component={Alert}
-            authed={1}
+            authed={Farm.phone_number}
           />
-          {/* <Route exact path="*" component={PageNotFound} /> */}
         </div>
-      </Switch>
     </Router>
   );
 }

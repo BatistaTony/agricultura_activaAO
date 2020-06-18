@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./alert.scss";
 import NavbarApp from "../navbarApp/navbarApp";
 import AlertCard from "./alert_card";
-import { data } from "jquery";
+import firebase from "./../../firebase";
+import { connect } from "react-redux";
 
 class Alert extends Component {
   state = {
@@ -17,10 +18,33 @@ class Alert extends Component {
     this.setState({ word: e.target.value });
   };
 
+  componentDidMount() {
+
+    const firestore = firebase.firestore();
+
+    const refCol = firestore.collection("alerts_farm");
+
+
+    const query = refCol
+      .where("alert_for", "==", this.props.state.Farm.phone_number)
+      .where("status", "==", "novo");
+
+    query.onSnapshot((docs) => {
+      const data = [];
+      
+      docs.forEach((doc) => {
+        data.push({ ...doc.data(), alert_id: doc.id });
+      });
+
+      this.setState({ markets: data });
+    });
+
+  }
+
   render() {
+
     const datas = this.state.markets.filter((market) => {
       const regex = new RegExp(`${this.state.word}`, "gi");
-
       return market.market_name.match(regex);
     });
 
@@ -30,7 +54,8 @@ class Alert extends Component {
 
         {datas.length > 0 ? (
           <h1 className="titl_alert">
-            <mark>05</mark> Mercados precisam do productos que você tem.
+            <mark>{this.state.markets.length}</mark> Mercados precisam do
+            productos que você tem.
           </h1>
         ) : null}
 
@@ -53,7 +78,7 @@ class Alert extends Component {
               ))}
             </ul>
           ) : (
-            <h1 className="titl_av">Sem colehita</h1>
+            <h1 className="titl_av">Sem Alertas Hoje</h1>
           )}
         </div>
       </div>
@@ -61,4 +86,7 @@ class Alert extends Component {
   }
 }
 
-export default Alert;
+const mapToStateProps = (state) => ({ state });
+const mapDispatchToProps = (dispatch) => ({ dispatch });
+
+export default connect(mapToStateProps, mapDispatchToProps)(Alert);

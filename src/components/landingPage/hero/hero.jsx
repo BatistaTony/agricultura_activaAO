@@ -10,15 +10,17 @@ export default function Hero() {
         <div className="contentItem">
           <ReactWOW animation="slideInLeft" duration="2s" delay="0.4s">
             <h1 className="item_title">
-              Faça uma colheita com objectivo, regista-se para obter mais contractos.
+              Faça uma colheita com objectivo, regista-se para obter mais
+              contractos.
             </h1>
           </ReactWOW>
           <ReactWOW animation="slideInLeft" duration="2s" delay="0.4s">
             <p className="item_texto">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Inventore quia fugiat obcaecati pariatur magni culpa commodi enim
-              animi nihil reiciendis? Repellendus perferendis earum nostrum
-              doloremque laborum velit repudiandae quisquam quo?
+              Todos os dias faz se uma colheita sem fim, e tem sempre algum
+              mercado ou grupo de pessoas precisando deste mesmo producto, o
+              Projecto Agricultura activa uni os mercados com as fazendas para
+              uma forma fácil de ter os productos em mão e fazer uma colheita
+              com objectivo.
             </p>
           </ReactWOW>
 

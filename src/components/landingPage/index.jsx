@@ -23,7 +23,8 @@ export default function LangingPage() {
             Tenha uma colheita já com o caminho e destino traçado
           </h1>
           <p className="text_sr_dm">
-            A fazenda pode adquirir um veiculo do Projecto e pagar as contas consoante a venda e o trajacto percorrido
+            Expande a tua boa colheita para todos os mercados de Angola, tenha
+            mais contractos e melhor gestão das colheitas.
           </p>
           <div className="itemBtns">
             <button className="btnItem btnItem_dm">

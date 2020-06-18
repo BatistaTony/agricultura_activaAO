@@ -6,7 +6,8 @@ import storage  from 'redux-persist/lib/storage'
 
 const persistConfig = {
   key: "agricultura_activa",
-  storage
+  storage,
+  blacklist: ['Harvest']
 }
 
 const persistedReducer = persistReducer(persistConfig, allReducers)

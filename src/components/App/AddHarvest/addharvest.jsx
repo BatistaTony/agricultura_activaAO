@@ -3,14 +3,14 @@ import "./addharvest.scss";
 import $ from "jquery";
 import { connect } from "react-redux";
 import { clearHarvest } from "./../../store/actions/harvest";
-import firebase from './../../firebase'
+import firebase from "./../../firebase";
 
 const initialState = {
   harvest_name: "",
   harvest_quant: 0,
   harvest_price: 0,
   error: "",
-}; 
+};
 
 class AddHarvest extends React.Component {
   state = initialState;
@@ -47,24 +47,38 @@ class AddHarvest extends React.Component {
     }
   };
 
-  creatHarvest = () => {
+  creatHarvest = async () => {
     this.setState({ error: "" });
-    alert("create");
     $(".overlayAdd").fadeOut();
     $("#form_add")[0].reset();
     this.props.dispatch(clearHarvest());
 
-    const firestore = firebase.firestore()
-    
+    const firestore = firebase.firestore();
 
-    //firestore.collection("")
-
-
+    await firestore.collection("farm_harvests").add({
+      harvest_owner: this.props.state.Farm.phone_number,
+      harvest_name: this.state.harvest_name,
+      total_harvest: this.state.harvest_quant,
+      harvest_price: this.state.harvest_price,
+    });
   };
 
-  updateHarvest = () => {
+  updateHarvest = async () => {
+    const firestore = firebase.firestore();
+
+    await firestore
+      .doc("farm_harvests/" + (await this.props.state.Harvest.harvest_id))
+      .set({
+        harvest_owner: this.props.state.Farm.phone_number,
+        harvest_name: this.props.state.Harvest.harvest_name,
+        total_harvest:
+          parseInt(this.state.harvest_quant) +
+          parseInt(this.props.state.Harvest.total_harvest),
+        harvest_price: this.state.harvest_price,
+        harvest_today: this.state.harvest_quant,
+      });
+
     this.setState({ error: "" });
-    alert("update");
     $(".overlayAdd").fadeOut();
     $("#form_add")[0].reset();
     this.props.dispatch(clearHarvest());
@@ -83,12 +97,7 @@ class AddHarvest extends React.Component {
   };
 
   render() {
-
-    const {
-      harvest_name,
-      total_harvest,
-      harvest_price,
-    } = this.props.state.Harvest;
+    const { harvest_name } = this.props.state.Harvest;
 
     return (
       <div className="overlayAdd">
@@ -120,7 +129,6 @@ class AddHarvest extends React.Component {
                   type="number"
                   name="harvest_quant"
                   id="harvest_quant"
-                  value={total_harvest}
                   onChange={this.handleChange}
                 />
               </div>
@@ -131,7 +139,6 @@ class AddHarvest extends React.Component {
                   type="number"
                   name="harvest_price"
                   id="harvest_price"
-                  value={harvest_price}
                   onChange={this.handleChange}
                 />
               </div>
