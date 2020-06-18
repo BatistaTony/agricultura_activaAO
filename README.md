@@ -1,7 +1,9 @@
-#Problema
+##Problema
 Angola é um país que a maioria vive de agricultura, se a agricultura também sustenta uma parte da economia de Angola.
 
 Em quase todos os meses algumas fazendas fazem colheita de produtos sem saber por onde vender em alguns casos ficam dificuldades de transportar atravéz do mal estado das vias.
+
+![Image description](https://github.com/BatistaTony/agricultura_activaAO/blob/master/public/images/logo.png)
 
 #Solução
 Agricultura Activa é uma App que reúne lojas que trabalham ou necessitam de productos agrícolas, como restaurantes, supermercados e fazenda para que possam ser conectadas e facilitar a prestação de serviços para cada um.
