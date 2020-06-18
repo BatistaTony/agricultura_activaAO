@@ -21,7 +21,7 @@
     "typescript": "^3.9.3"
   },
   "scripts": {
-    "start": "nodejs server",
+    "start": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
