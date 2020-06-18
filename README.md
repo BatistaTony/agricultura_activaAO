@@ -1,68 +1,23 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Problema
+Angola é um país que a maioria vive de agricultura, se a agricultura também sustenta uma parte da economia de Angola.
 
-## Available Scripts
+Em quase todos os meses algumas fazendas fazem colheita de produtos sem saber por onde vender em alguns casos ficam dificuldades de transportar atravéz do mal estado das vias.
 
-In the project directory, you can run:
+#Solução
+Agricultura Activa é uma App que reúne lojas que trabalham ou necessitam de productos agrícolas, como restaurantes, supermercados e fazenda para que possam ser conectadas e facilitar a prestação de serviços para cada um.
 
-### `npm start`
+A App registas as lojas no sistema, pega as localizações das mesmas, quando estiverem com o seu estoque baixo de alimentos, eles podem alertar a partir da App e a App alerta a fazenda que está mais próxima e que tem o productos pedido pela loja e para assim a fazenda fazer uma colheita com uma trajectória e destino já traçado.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#Features
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#Alerta de escasseis
+Quando um mercado ou grupo de pessoas ligado ao Projecto solicita uma quantidade de producto que está em falta no seu stock a App alerta a fazenda mais próxima Para que possa fornecer o producto.
 
-### `npm test`
+#Entra em contacto
+A fazenda recebe o alerta a partir da App, e entre em contacto para fazer o negocio com o mercado ou o grupo de pessoas.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#Leve os productos
+Depois de fechar o negocio, a fazenda pode pedir um transporte de mercadoria do projecto se não tiver cujo o valor será descontado consoante a trajectória e a venda.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#Ainda está em desenvolvimento...
