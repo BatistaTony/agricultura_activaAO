@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "animate.css": "^4.1.0",
     "express": "^4.17.1",
+    "firebase": "^7.15.3",
     "jquery": "^3.5.1",
     "node-sass": "^4.14.1",
     "password-hash": "^1.2.2",
