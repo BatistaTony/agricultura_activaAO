@@ -1,7 +1,7 @@
 ## Problema
-Angola é um país que a maioria vive de agricultura, se a agricultura também sustenta uma parte da economia de Angola.
+Angola é um país que a maioria vive de agricultura, e a agricultura também sustenta uma parte da economia de Angola.
 
-Em quase todos os meses algumas fazendas fazem colheita de produtos sem saber por onde vender em alguns casos ficam dificuldades de transportar atravéz do mal estado das vias.
+Em quase todos os meses algumas fazendas fazem colheita de produtos sem saber por onde vender em alguns casos ficam com dificuldades de transportar atravéz do mal estado das vias.
 
 ![Image description](https://github.com/BatistaTony/agricultura_activaAO/blob/master/public/images/logo.png)
 
