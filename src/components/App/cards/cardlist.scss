@@ -74,18 +74,18 @@
   width: 90%;
   height: 200px;
   margin-top: 30px;
-  @include flexbox(row, space-between, flex-start);
+  @include flexbox(row,space-between,flex-start);
   flex-wrap: wrap;
 }
 
 .card {
-  float: left;
+  //float: left;
   width: 290px;
   height: 110px;
   position: relative;
   background: linear-gradient(to left, #fa4a39, #ef3169);
   border-radius: 7px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 
   @media (max-width: 995px) {
     width: 32%;

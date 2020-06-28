@@ -33,10 +33,10 @@ class CardList extends React.Component {
       const data = [];
 
       docs.forEach((doc) => {
-        data.push({...doc.data(), harvest_id: doc.id});
+        data.push({ ...doc.data(), harvest_id: doc.id });
       });
 
-      this.setState({ harvest: data });
+      //this.setState({ harvest: data });
     });
   }
 

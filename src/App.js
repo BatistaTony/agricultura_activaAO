@@ -5,7 +5,6 @@ import Account from "./components/landingPage/account/account";
 import Dashboard from "./components/App/dashboard/dashboard";
 import PrivateRouter from "./privateRouter";
 import { useSelector } from "react-redux";
-import PageNotFound from "./pageNotFound";
 import Alert from "./components/App/alert/alert";
 
 function App() {

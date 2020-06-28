@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function NavbarApp() {
   const farm = useSelector((state) => state.Farm);
   const dispatch = useDispatch();
-  const [alertN, setAlert] = useState(0)
+  const [alertN, setAlert] = useState(0);
 
   const OpenMenuOpcoes = () => {
     $(".menu_op_").fadeToggle();
@@ -28,9 +28,11 @@ export default function NavbarApp() {
       .where("status", "==", "novo");
 
     query.onSnapshot((docs) => {
-      setAlert(alertN + 1)
+      if (docs.FE.docChanges.length) {
+        setAlert(alertN + 1);
+      }
     });
-  }, 1);
+  }, [alertN, farm.phone_number]);
 
   const logOut = () => {
     firebase

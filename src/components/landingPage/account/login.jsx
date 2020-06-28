@@ -24,6 +24,7 @@ class Login extends Component {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
     $(".img_ipt_status").removeClass("img_sh");
+    this.setState({ error: "" });
   };
 
   login = async () => {
@@ -72,20 +73,20 @@ class Login extends Component {
         .catch((err) => {
           $(".img_spinner").fadeOut();
           $(".btnL, .btnR, .input_fm").prop("disabled", false);
-          this.setState({ error: err.message });
+          this.setState({ error: "Erro de rede tente de novo." });
         });
     }
   };
 
   showRegister = () => {
     $(".login").fadeOut(300);
-    setTimeout(() => {
-      $(".register_").fadeIn();
-    }, 300);
 
     $("#login")[0].reset();
     this.setState(initalState);
     $(".img_spinner").fadeOut();
+    setTimeout(() => {
+      $(".register_").fadeIn();
+    }, 300);
   };
 
   render() {

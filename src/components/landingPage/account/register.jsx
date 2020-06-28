@@ -91,12 +91,13 @@ class Register extends Component {
 
   showLogin = () => {
     $(".register_").fadeOut(300);
-    setTimeout(() => {
-      $(".login").fadeIn();
-    }, 300);
+
     $("#register")[0].reset();
     this.setState(initalState);
     $(".img_spinner").fadeOut();
+    setTimeout(() => {
+      $(".login").fadeIn();
+    }, 300);
   };
 
   render() {
