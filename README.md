@@ -13,13 +13,16 @@ A App registas as lojas no sistema, pega as localizações das mesmas, quando es
 ## Features
 
     #Alerta de escasseis
-    Quando um mercado ou grupo de pessoas ligado ao Projecto solicita uma quantidade de producto que está em falta no seu stock a App alerta a fazenda mais próxima     Para que possa fornecer o producto.
+    Quando um mercado ou grupo de pessoas ligado ao Projecto solicita uma quantidade de producto que está em falta 
+    no seu stock a App alerta a fazenda mais próxima     Para que possa fornecer o producto.
 
     ## Entra em contacto
-    A fazenda recebe o alerta a partir da App, e entre em contacto para fazer o negocio com o mercado ou o grupo de pessoas.
+    A fazenda recebe o alerta a partir da App, e entre em contacto para fazer o negocio com o mercado ou o grupo 
+    de pessoas.
 
     ## Leve os productos
-    Depois de fechar o negocio, a fazenda pode pedir um transporte de mercadoria do projecto se não tiver cujo o valor será descontado consoante a trajectória e a        venda.
+    Depois de fechar o negocio, a fazenda pode pedir um transporte de mercadoria do projecto se não tiver cujo o valor 
+    será descontado consoante a trajectória e a        venda.
 
 
 ## Ainda está em desenvolvimento...
